@@ -1,0 +1,4 @@
+SELECT QuotationID, Employee.NickName Employee, JobName, TotalPrice
+FROM Quotation, Employee, Job
+WHERE Quotation.EmpID = Employee.EmpID
+AND Quotation.JobID = Job.JobID ;

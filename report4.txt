@@ -1,0 +1,18 @@
+-- รายงานผลประสิทธิภาพของพนักงาน
+-- Actor : Manager
+-- เหตุผล : ใช้ในการคัดกรองพนักงานที่มีประสิทธิภาพไม่ดีออกจากระบบ
+-- แสดงรายชื่อพนักงาน เรตติงเฉลี่ย ชั่วโมงการทำงาน จำนวนงานที่ทำ จำนวนลูกค้า จำนวนใบเสนอราคา
+SELECT Employee.EmpID, MIN(Employee.Title) Title, MIN(Employee.FName) FName, MIN(Employee.LName) LName, SUM(WorkHours) WorkHours_Sum, AVG(DISTINCT(Rating)) Rating_AVG, COUNT(DISTINCT(Job.JobID)) Job_Count, COUNT(DISTINCT(Customer.CustomerID)) Customer_Count, COUNT(DISTINCT(Quotation.QuotationID)) Quotation_Count
+FROM Employee
+LEFT OUTER JOIN Activity
+ON Employee.EmpID = Activity.EmpID
+LEFT OUTER JOIN Job
+ON Job.JobID = Activity.JobID
+LEFT OUTER JOIN ReviewRating
+ON Job.JobID = ReviewRating.JobID
+LEFT OUTER JOIN Customer
+ON Customer.CustomerID = Job.CustomerID 
+LEFT OUTER JOIN Quotation
+ON Job.JobID = Quotation.JobID
+GROUP BY Employee.EmpID
+ORDER BY Employee.EmpID ;

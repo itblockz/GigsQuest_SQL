@@ -1,0 +1,12 @@
+INSERT INTO ReviewRating VALUES (1, 3, 'ดีมาก', 2) ;
+INSERT INTO ReviewRating VALUES (2, 2, 'งานดี', 4) ;
+INSERT INTO ReviewRating VALUES (3, 4, 'ประทับใจ', 1) ;
+INSERT INTO ReviewRating VALUES (4, 1, 'ไม่น่าพอใจ', 6) ;
+INSERT INTO ReviewRating VALUES (5, 5, 'งานดีมาก', 3) ;
+INSERT INTO ReviewRating VALUES (6, 3, 'ปานกลาง', 5) ;
+INSERT INTO ReviewRating VALUES (7, 4, 'คุ้มค่า', 2);
+INSERT INTO ReviewRating VALUES (8, 2, 'ตกใจ', 4);
+INSERT INTO ReviewRating VALUES (9, 5, 'ทำดีมาก', 1);
+INSERT INTO ReviewRating VALUES (10, 3, 'ปานกลาง', 6);
+INSERT INTO ReviewRating VALUES (11, 1, 'ไม่พอใจ', 3);
+COMMIT ;

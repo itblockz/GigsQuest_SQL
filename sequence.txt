@@ -1,0 +1,19 @@
+DROP SEQUENCE Seq_Emp ;
+
+CREATE SEQUENCE Seq_Emp
+START WITH 1
+INCREMENT BY 1;
+----------------------------------------
+DELETE FROM Receipt;
+
+DROP SEQUENCE Seq_Receipt ;
+
+CREATE SEQUENCE Seq_Receipt
+START WITH 1
+INCREMENT BY 1;
+----------------------------------------
+DROP SEQUENCE Seq_Quotation ;
+
+CREATE SEQUENCE Seq_Quotation
+START WITH 1
+INCREMENT BY 1;

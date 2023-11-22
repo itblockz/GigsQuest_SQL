@@ -1,0 +1,35 @@
+CREATE TABLE Employee
+	(EmpID NUMBER(4),
+	Nickname VARCHAR(10),
+	Title VARCHAR(10),
+	FName VARCHAR(40),
+	LName VARCHAR(40),
+	BirthDate DATE,
+	Sex CHAR,
+	Tel NUMBER(10),
+	Email VARCHAR(40),
+	Address VARCHAR(400),
+	CONSTRAINT PK_Employee PRIMARY KEY (EmployeeID));
+
+DROP TABLE Receipt ;
+
+CREATE TABLE Receipt
+	(ReceiptID NUMBER(38),
+	Commission FLOAT(126),
+	TotalPrice FLOAT(126),
+	VAT FLOAT(126),
+	EmployeeID NUMBER(38),
+	JobID NUMBER(38),
+	CustomerID NUMBER(38),
+	CONSTRAINT PK_Receipt PRIMARY KEY (ReceiptID),
+	CONSTRAINT FK_Receipt_Employee FOREIGN KEY(EmployeeID) REFERENCES Employee(EmpID),
+	CONSTRAINT FK_Receipt_Job FOREIGN KEY(JobID) REFERENCES Job(JobID),
+	CONSTRAINT FK_Receipt_Customer FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID)) ;
+
+CREATE TABLE ReviewRating
+	(JobID NUMBER(38),
+    Rating NUMBER(1),
+	Review VARCHAR(400),
+    CustomerID NUMBER(38),
+	CONSTRAINT PK_Job_Rating PRIMARY KEY (JobID, Rating),
+    CONSTRAINT FK_Rating_Customer FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID)) ;

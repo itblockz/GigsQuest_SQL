@@ -1,0 +1,6 @@
+SELECT DISTINCT(JobName), Employee.EmpID, Employee.NickName Employee, Customer.NickName Customer, Rating, Review
+FROM Job, Activity, Employee, Customer, ReviewRating
+WHERE Job.JobID = Activity.JobID
+AND Activity.EmpID = Employee.EmpID
+AND Job.CustomerID = Customer.CustomerID
+AND ReviewRating.JobID = Job.JobID ;

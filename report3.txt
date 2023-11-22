@@ -1,0 +1,5 @@
+SELECT ReceiptID, Employee.NickName Employee, JobName, Customer.NickName Customer, Receipt.TotalPrice
+FROM Receipt, Employee, Job, Customer
+WHERE Receipt.EmployeeID = Employee.EmpID
+AND Receipt.JobID = Job.JobID
+AND Receipt.CustomerID = Customer.CustomerID ;

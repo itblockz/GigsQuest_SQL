@@ -1,0 +1,34 @@
+CREATE OR REPLACE PROCEDURE Insert_Quotation
+	(v_EmployeeID Employee.EmpID%TYPE,
+	v_JobID Job.JobID%TYPE,
+	v_CustomerID Customer.CustomerID%TYPE)
+IS
+	v_Commission NUMBER ;
+	v_TotalPrice NUMBER ;
+	v_VAT NUMBER ;
+	v_JobPrice NUMBER ;
+BEGIN
+	v_Commission := 5 ;
+	v_VAT := 7 ;
+	SELECT Price
+    INTO v_JobPrice
+    FROM Job
+    WHERE JobID = v_JobID ;
+    v_TotalPrice := v_JobPrice * (1 + (v_Commission + v_VAT)/100) ;
+    INSERT INTO Quotation VALUES
+    (Seq_Quotation.nextval,
+    v_JobPrice * v_Commission/100,
+    v_TotalPrice,
+    v_JobPrice * v_VAT/100,
+    v_EmployeeID,
+    v_JobID,
+    v_CustomerID) ;
+END ;
+/
+
+EXEC Insert_Quotation(1, 1, 1) ;
+EXEC Insert_Quotation(2, 4, 6) ;
+EXEC Insert_Quotation(1, 3, 5) ;
+EXEC Insert_Quotation(6, 2, 4) ;
+EXEC Insert_Quotation(3, 5, 1) ;
+EXEC Insert_Quotation(4, 6, 2) ;

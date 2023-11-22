@@ -1,0 +1,41 @@
+CREATE OR REPLACE PROCEDURE Insert_Receipt
+	(v_EmployeeID Employee.EmpID%TYPE,
+	v_JobID Job.JobID%TYPE,
+	v_CustomerID Customer.CustomerID%TYPE,
+    v_Time VARCHAR)
+IS
+	v_Commission NUMBER ;
+	v_TotalPrice NUMBER ;
+	v_VAT NUMBER ;
+	v_JobPrice NUMBER ;
+BEGIN
+	v_Commission := 5 ;
+	v_VAT := 7 ;
+	SELECT Price
+    INTO v_JobPrice
+    FROM Job
+    WHERE JobID = v_JobID ;
+    v_TotalPrice := v_JobPrice * (1 + (v_Commission + v_VAT)/100) ;
+    INSERT INTO Receipt VALUES
+    (Seq_Receipt.nextval,
+    v_JobPrice * v_Commission/100,
+    v_TotalPrice,
+    v_JobPrice * v_VAT/100,
+    v_EmployeeID,
+    v_JobID,
+    v_CustomerID,
+    TO_TIMESTAMP(v_Time, 'DD-MM-YY HH24:MI:SS')) ;
+END ;
+/
+
+EXEC Insert_Receipt(4, 2, 6, '17-05-2022 09:15:00') ;
+EXEC Insert_Receipt(1, 5, 3, '03-08-2023 18:45:00') ;
+EXEC Insert_Receipt(2, 6, 1, '28-11-2022 14:30:00') ;
+EXEC Insert_Receipt(3, 4, 5, '10-02-2023 12:00:00') ;
+EXEC Insert_Receipt(6, 1, 2, '22-09-2022 16:45:00') ;
+EXEC Insert_Receipt(5, 3, 4, '07-06-2023 10:30:00') ;
+EXEC Insert_Receipt(1, 7, 6, '14-03-2022 20:00:00') ;
+EXEC Insert_Receipt(4, 8, 3, '01-07-2023 15:15:00') ;
+EXEC Insert_Receipt(2, 9, 1, '19-10-2022 11:45:00') ;
+EXEC Insert_Receipt(3, 10, 5, '29-04-2023 13:30:00') ;
+COMMIT ;
